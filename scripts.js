@@ -1,32 +1,28 @@
-let todo = [
-    {
-        text: 'Aprender HTML, CSS e Javascript',
-        done: false
-    },
-    {
-        text: 'Aprender o básico de Vue JS',
-        done: true
-    }
-]
+
 
 const todosApp = {
     data() {
         return {
-            todos: todo,
-            newTodo: {}
+            todos: [],
+            newTodo: []
         }
     },
     methods: {
         addTodo: function (){
             if (this.newTodo.text){
-                this.todos.push(this.newTodo)
+                this.todos.push( this.newTodo)
                 this.newTodo = {
                     done: false
                 }
-            } 
+                localStorage.setItem('todos', JSON.stringify(this.todos)) 
+            }
+            
             else{
                 alert('Adicione uma tarefa')
             }
+        },
+        clearAll: function (){
+            this.todos = []
         }
     }
 };
