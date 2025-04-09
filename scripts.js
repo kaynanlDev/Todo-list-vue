@@ -4,7 +4,7 @@ const todosApp = {
     data() {
         return {
             todos: [],
-            newTodo: []
+            newTodo: {}
         }
     },
     methods: {
@@ -23,7 +23,13 @@ const todosApp = {
         },
         clearAll: function (){
             this.todos = []
+        },
+        upStorage: function() {
+            localStorage.setItem('todos', JSON.stringify(this.todos)) 
         }
+    },
+    created() {
+        this.todos = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : this.todos 
     }
 };
 
